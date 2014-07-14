@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+
+{% block body %}
+<div class="left" id="sendPane">
+	<form id="send" action="/sendGcode" method="POST">
+		<h3>G-Code</h3>
+		{% if response %}
+		<div class="response">
+			{{response}}
+		</div>
+		{% endif %}
+		<textarea name='gcode' rows=12 cols=50 placeholder="Enter G-Code Here"></textarea><br>
+		Repeat: <input type=number name="repeat" style="width: 3em" min="0" max="99" step="1" value="1">
+		<input type=radio name="unit" value="mm">mm  
+		<input type=radio name="unit" value="in" checked="checked">in
+		<input type=submit value="Send Gcode"></input>
+	</form>
+</div>
+
+<div id="dPane">
+	<img src="img/buttons.png" usemap=#dButtons border=0> 
+	<map id="dButtons" name="dButtons">
+	<area shape="rect" alt="" title="" coords="51,72,145,134" href="/on" target="" />
+	<area shape="rect" alt="" title="" coords="49,166,147,228" href="/stop" target="" />
+	<area shape="circle" alt="" title="" coords="262,96,31" href="/up" target="" />
+	<area shape="circle" alt="" title="" coords="320,150,29" href="/right" target="" />
+	<area shape="circle" alt="" title="" coords="207,150,30" href="/left" target="" />
+	<area shape="circle" alt="" title="" coords="262,208,30" href="/down" target="" />
+	<!-- Created by Online Image Map Editor (http://www.maschek.hu/imagemap/index) -->
+	</map>
+</div>
+
+<div class="right" id="convertPane" style="display:none">
+	<form id="convert" action="/convertGcode" method="POST">
+		<h3>Convert File</h3>
+		<p>
+		
+		Convert a DXF file to Gcode.  Many programs can output DXF files.<br>
+		Try going to <b> File >> Save as... >> File Type: DXF </b> in AutoCAD <br>
+		or go to the <b> File >> Export </b> menu in Adobe Illustrator <br><br>
+		The software does not support splines, so make sure to convert all of those to 'arcs'
+		
+		</p>
+		<input type=file></input>
+		<input type=submit value="Convert File"></input>
+	</form>
+</div>
+<script src="js/logs.js"></script>
+
+{% endblock %}

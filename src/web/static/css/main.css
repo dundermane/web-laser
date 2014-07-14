@@ -1,0 +1,111 @@
+/******
+ CLEAR
+*******/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	font-family: sans-serif;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+body, html {
+	height: 100%;
+	width: 100%;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+#container {
+	text-align: center;
+	height: 100%;
+	width: 100%;
+	min-width: 110px;
+}
+
+header {
+	display: inline-block;
+	text-align: left;
+	width: 80%;
+	margin: 20px 0;
+}
+
+h1 {
+	font-size: 24pt;
+	font-weight: bold;
+	color: #22A;
+}
+
+h2 {
+	font-size: 18pt;
+}
+
+h3 {
+	font-size: 16pt;
+	font-weight: bold;
+}
+
+p {
+	font-size: 10pt;
+	text-align: left;
+	padding: 15px;
+}
+
+.left, .right{
+	width: 40%;
+	padding: 4px;
+	display: inline-block;
+	vertical-align: top;
+	background-color: #AFA;
+	border-radius: 5px;
+}
+
+
+#convert input[type=text] {
+	background-color: red;
+}
+
+
+#send {}
+
+footer {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+}

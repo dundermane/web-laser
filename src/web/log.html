@@ -1,0 +1,13 @@
+{% extends "main.html" %}
+
+{% block body %}
+<br>
+<ul id="dayLog">
+{% for log in logs %}
+<li><span class="logMessage">{{ log.message }}</span><span class="logTime">{{ log.time }}</span></li>
+{% endfor %}
+</ul>
+</div>
+<script src="js/logs.js"></script>
+
+{% endblock %}
