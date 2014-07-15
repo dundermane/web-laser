@@ -17,7 +17,7 @@ def send(job=None,sname='/dev/ttyACM0'):
 	
     # Wake up grbl
     s.write("\r\n\r\n")
-    time.sleep(2) # Wait for grbl to initialize
+    time.sleep(.5) # Wait for grbl to initialize
     s.flushInput() # Flush startup text in serial input
 
 	#set units

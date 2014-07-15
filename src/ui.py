@@ -20,16 +20,13 @@ def landing():
     now = datetime.datetime.now()
     return render_template('landing.html')
 
-@app.route('/sendGcode',methods=['POST'])
+@app.route('/g',methods=['POST'])
 def send_g():
     job = {}
-    
     job['gcode'] = request.form['gcode']
     job['unit'] = request.form['unit']
     job['repeat'] = request.form['repeat']
-	
-    response = sender.send(job)
-    return render_template('landing.html', response=response)
+    return sender.send(job)
         
 
 if __name__ == "__main__":

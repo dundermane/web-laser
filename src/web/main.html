@@ -3,17 +3,20 @@
 <head>
 	<title>Interlock - Laser Control</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
 </head>
 
 <body>
 	<div id="container">
 		<header>
-				<h1>Laser Control</h1>
+				<h1 id="title">Laser Control</h1>
 		</header>
 {% block body %}{% endblock %}
 
 		<footer>
-			Interlock Laser CNC Control | 2014
+			Interlock Laser CNC Control | 2014 | <a href="http://www.linuxcnc.org/docs/2.5/html/gcode/gcode.html">Learn G-Code</a> | <a href="https://github.com/grbl/grbl/wiki/G-Code-Examples">Example G-Code</a>
 		</footer>
+		
 	</div>
+	<script type="text/javascript" src="js/buttons.js"></script>
 </body>
