@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 install_requires = [
-    'Flask',
+    'Flask >= 0.10.0',
     'datetime'   
 ]
 
