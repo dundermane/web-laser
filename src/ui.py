@@ -30,5 +30,5 @@ def send_g():
         
 
 if __name__ == "__main__":
-    app.run(host='::', port=1024)
+    app.run(host='0.0.0.0', port=1024)
 
