@@ -4,7 +4,8 @@ from setuptools import setup
 
 install_requires = [
     'Flask >= 0.10.0',
-    'datetime'   
+    'pyformex',
+    'datetime' 
 ]
 
 setup(name='laser-interlock',

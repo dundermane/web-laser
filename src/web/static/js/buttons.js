@@ -50,7 +50,7 @@ $("#left").click(function(){
   });
 });
 
-$("#stop").click(function(){
+$("#off").click(function(){
   $.post("/g",
   {
     gcode:"M5",

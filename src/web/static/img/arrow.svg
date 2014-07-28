@@ -9,15 +9,15 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="30"
-   height="30"
+   width="50"
+   height="50"
    id="svg3010"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
    inkscape:export-filename="/home/viktor/Desktop/G-Unit/src/web/static/img/button.png"
    inkscape:export-xdpi="90"
    inkscape:export-ydpi="90"
-   sodipodi:docname="New document 2">
+   sodipodi:docname="arrow.svg">
   <defs
      id="defs3012" />
   <sodipodi:namedview
@@ -29,7 +29,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="12.704352"
      inkscape:cx="8.0732397"
-     inkscape:cy="15"
+     inkscape:cy="29.235091"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -46,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,15 +54,15 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1022.3622)">
+     transform="translate(0,-1002.3622)">
     <rect
-       style="fill:#808080;fill-opacity:1;stroke:#666666;stroke-width:0.97787522999999998"
+       style="fill:#ececec;fill-opacity:1;stroke:#666666;stroke-width:1.64338434000000011"
        id="rect3020"
-       width="28.463684"
-       height="28.630659"
-       x="0.87946057"
-       y="1023.1305"
-       ry="2.4041011" />
+       width="47.835114"
+       height="48.115726"
+       x="1.2122151"
+       y="1003.3127"
+       ry="4.0402517" />
     <path
        sodipodi:type="star"
        style="fill:#333333;fill-opacity:1;stroke:#666666"
@@ -78,7 +78,7 @@
        inkscape:rounded="0.04"
        inkscape:randomized="0"
        d="m 20.300566,10.115334 c -0.44245,0.766345 -21.680018,0.766345 -22.1224673,0 C -2.2643507,9.3489892 8.3544336,-9.0432844 9.2393323,-9.0432844 c 0.8848987,0 11.5036827,18.3922737 11.0612337,19.1586184 z"
-       transform="translate(5.9745722,1036.008)"
-       inkscape:transform-center-y="-2.9057237" />
+       transform="matrix(1.6805665,0,0,1.6805665,9.7748888,1024.9542)"
+       inkscape:transform-center-y="-4.8832402" />
   </g>
 </svg>

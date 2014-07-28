@@ -89,7 +89,7 @@ p {
 
 .left, .right{
 	width: 40%;
-	padding: 4px;
+	padding: 20px 4px;
 	display: inline-block;
 	vertical-align: top;
 	background-color: #AFA;
@@ -104,32 +104,64 @@ p {
 
 #send {}
 
-#dPane {
-	display: inline-block;
-	
+
+#dPane div{
+	vertical-align: middle;
 }
 
-#dPane {
+#bPad {
+	display: inline-block;
+	width: 200px;
+}
 
+#dPad {
+	display: inline-block;
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+
+#dPad img{
+	position: absolute;
 }
 
 #up {
-
+	transform: rotate(0deg);
+	-webkit-transform: rotate(0deg);
+	top: 0px;
+	left: 50px;
 }
 
 #down {
-
+	transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+	bottom: 0px;
+	left: 50px;
 }
 
 #left {
-
+	transform: rotate(270deg);
+	-webkit-transform: rotate(270deg);
+	top: 50px;
+	left: 0px;
 }
 
 #right {
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	top: 50px;
+	right: 0px;
+}
 
+#on {
+	display: inline-block;
+}
+
+#off {
+	display: inline-block;
 }
 
 footer {
-	margin-top: 40px;
+	margin-top: 50px;
 	width: 100%;
 }
