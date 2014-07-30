@@ -36,12 +36,12 @@ def send(job=None,sname='/dev/ttyACM0'):
     s.write('\n')
 
     #regex the gcode
-    job['gcode'] = str(job['gcode']).split('\n')
+    job['gcode'] = job['gcode'].split('\n')
     print job['gcode']
 
     # Stream g-code to grbl
-    r = 0
-    while r < int(job['repeat']):
+    repeat = 0
+    while repeat < int(job['repeat']):
         print "Streaming gcode to "+sname
         l_count = 0
         g_count = 0
@@ -66,10 +66,12 @@ def send(job=None,sname='/dev/ttyACM0'):
             print "SND: " + str(l_count) + " : " + l_block,
             s.write(l_block + '\n') # Send block to grbl
             print "BUF:",str(sum(c_line)),"REC:",grbl_out
-        r+=1;
+        repeat+=1;
 
     # Wait for user input after streaming is completed
     print 'G-code streaming finished!'
+    print s.inWaiting()
+    
     # Close file and serial port
     time.sleep(2)
     s.close()
