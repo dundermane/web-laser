@@ -1,91 +1,52 @@
-$("#down").click(function(){
+function pops( message ){
+
+	$('#response').prepend('<p>' + message + '</p>');
+	$('#response').contents().fadeOut(1500);
+	
+};
+
+function sendG(gcode, unit='mm', repeat=1){
   $.post("/g",
   {
-    gcode:"G91\nG0X0Y-0.5\nG90",
-    unit:"in",
-    repeat:"1"
+    gcode:gcode,
+    unit:unit,
+    repeat:repeat
   },
   function(data,status){
-	$('#response').prepend('<p>' + data + '</p>');
-	$('#response').contents().fadeOut(1500);
+	pops( data );
   });
-});
+};
 
-$("#up").click(function(){
-  $.post("/g",
-  {
-    gcode:"G91\nG0X0Y0.5\nG90",
-    unit:"in",
-    repeat:"1"
-  },
-  function(data,status){
-	$('#response').prepend('<p>' + data + '</p>');
-	$('#response').contents().fadeOut(1500);
-  });
-});
+function drawGcode(){
+	
 
-$("#right").click(function(){
-  $.post("/g",
-  {
-    gcode:"G91\nG0X0.5Y0\nG90",
-    unit:"in",
-    repeat:"1"
-  },
-  function(data,status){
-	$('#response').prepend('<p>' + data + '</p>');
-	$('#response').contents().fadeOut(1500);
-  });
-});
+};
 
-$("#left").click(function(){
-  $.post("/g",
-  {
-    gcode:"G91\nG0X-0.5Y0\nG90",
-    unit:"in",
-    repeat:"1"
-  },
-  function(data,status){
-	$('#response').prepend('<p>' + data + '</p>');
-	$('#response').contents().fadeOut(1500);
-  });
-});
-
-$("#off").click(function(){
-  $.post("/g",
-  {
-    gcode:"M5",
-    unit:"in",
-    repeat:"1"
-  },
-  function(data,status){
-	$('#response').prepend('<p>' + data + '</p>');
-	$('#response').contents().fadeOut(1500);
-  });
-});
-
-
-$("#on").click(function(){
-  $.post("/g",
-  {
-    gcode:"M3",
-    unit:"in",
-    repeat:"1"
-  },
-  function(data,status){
-	$('#response').prepend('<p>' + data + '</p>');
-	$('#response').contents().fadeOut(1500);
-  });
-});
-
-$("#gsend").click(function(){
-  $.post("/g",
-  {
-    gcode: $('textarea[name=gcode]').val(),
-    unit: $('input[name=unit]:radio:checked').val(),
-    repeat: $('input[name=repeat]').val()
-  },
-  function(data,status){
-	$('#response').prepend('<p>' + data + '</p>');
-	$('#response').contents().fadeOut(1500);
-  });
+$('#convertButton').click(function(){
+    var formData = new FormData($("form[name='convert']")[0]);
+    $.ajax({
+        url: '/convert',  //Server script to process data
+        type: 'POST',
+        // Form data
+        data: formData,
+        //Options to tell jQuery not to process data or worry about content-type.
+        cache: false,
+        contentType: false,
+        processData: false
+    })
+     .success	(function( data ) {
+      if(data.success[0] == true){
+        console.log('conversion win')
+				var code = [];
+				for(i = 0; i < data.groups.length; i++){
+					for(k = 0; k < data.groups[i].gcode.length; k++)
+						code.push(data.groups[i].gcode[k]);
+				}
+				$("textarea[name='gcode']").val(code.join("\n"));
+				pops(data.success[1]);
+			} else {
+			  console.log('conversion fail!');
+			  pops( data.success[1] );
+			};
+		 });
 });

@@ -1,18 +1,20 @@
 #!/bin/sh
 
-date >> /home/pi/weblog/git.txt
+FOLDER="/home/viktor/Desktop/G-Unit"
+USER="viktor"
 
-sudo -u pi -i git \
-	--git-dir=./web-laser/.git \
-	--work-tree=./web-laser \
-	fetch origin \
-	>> /home/pi/weblog/git.txt
+date >> $FOLDER/git.log
 
-sudo -u pi -i git \
-	--git-dir=/home/pi/web-laser/.git \
-	--work-tree=/home/pi/web-laser \
-	merge origin/master \
-	>> /home/pi/weblog/git.txt
+sudo -u $USER git \
+	--git-dir=$FOLDER/.git \
+	--work-tree=$FOLDER \
+	fetch origin >> $FOLDER/git.log
 
-date >> /home/pi/weblog/logs.txt
-sudo python /home/pi/web-laser/src/ui.py >> /home/pi/weblog/logs.txt &
+sudo -u $USER git \
+	--git-dir=$FOLDER/.git \
+	--work-tree=$FOLDER \
+	merge origin/master >> $FOLDER/git.log
+
+date >> $FOLDER/web.log
+
+sudo python $FOLDER/src/ui.py >> $FOLDER/web.log

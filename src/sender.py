@@ -13,15 +13,16 @@ RX_BUFFER_SIZE = 128
 def send(job=None,sname='/dev/ttyACM0'):
 
     if job == None:
-        return 'Invalid Job'
+        yield 'Invalid Job'
     
     try:
         s = serial.Serial(sname,9600)
     except Exception, e:
-        return 'Serial Init Fail:\n{0}'.format(e)
+        yield str(e).split(':')[0]
+        return
 
     # Wake up grbl
-    print "Initializing grbl..."
+    yield "Initializing grbl..."
     s.write("\r\n\r\n")
 
     # Wait for grbl to initialize and flush startup text in serial input
@@ -37,12 +38,11 @@ def send(job=None,sname='/dev/ttyACM0'):
 
     #regex the gcode
     job['gcode'] = job['gcode'].split('\n')
-    print job['gcode']
 
+    yield "Streaming gcode to "+sname
     # Stream g-code to grbl
     repeat = 0
     while repeat < int(job['repeat']):
-        print "Streaming gcode to "+sname
         l_count = 0
         g_count = 0
         c_line = []
@@ -69,10 +69,10 @@ def send(job=None,sname='/dev/ttyACM0'):
         repeat+=1;
 
     # Wait for user input after streaming is completed
-    print 'G-code streaming finished!'
+    yield 'G-code streaming finished!'
     print s.inWaiting()
     
     # Close file and serial port
     time.sleep(2)
     s.close()
-    return 'Streaming Complete'
+    return

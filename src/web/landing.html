@@ -1,45 +1,88 @@
 {% extends "main.html" %}
 
 {% block body %}
-<div id="dPane" class="right">
-	<div id="dPad">
-	<img src="img/arrow.png" href=# id="up" border=0 target=""">
-	<img src="img/arrow.png" href=# id="down" border=0 target="">
-	<img src="img/arrow.png" href=# id="left" border=0 target="">
-	<img src="img/arrow.png" href=# id="right" border=0 target="">
-	</div>
-	<div id="bPad">
-	<img src="img/on.png" href=# id="on" border=0 target=""><br>
-	<img src="img/off.png" href=# id="off" border=0 target="">
-	</div>
-</div>
 
-<div class="left" id="sendPane">
-	<form id="send" action="/g" method="POST">
-		<h3>G-Code</h3>
-		<div id="response"></div>
-		<textarea name='gcode' rows=12 cols=50 placeholder="Enter G-Code Here"></textarea><br>
-		Repeat: <input type=number name="repeat" style="width: 3em" min="0" max="99" step="1" value="1">
-		<input type=radio name="unit" value="mm">mm  
-		<input type=radio name="unit" value="in" checked="checked">in
-		<a href=# id="gsend">Send G-Code</a>
-	</form>
-</div>
-
-<div class="right" id="convertPane" style="display:none">
-	<form id="convert" action="/convertGcode" method="POST">
-		<h3>Convert File</h3>
-		<p>
+<div class="panel panel-default">
+	<div class="row panel-body">
+		<canvas id="path-canvas" class="panel-body col-md-8"></canvas>
+		<script src="path-canvas.js"></script>
+		<div id="controls" class="panel-body col-md-4">
+			<div id="dPane" class="panel-body">
+				<div class="btn-group" id="dPad"><!--btn-group-vertical is a thing*/-->
+				<button type="button" class="btn btn-default btn-lg" onclick="sendG('G91\nG0X0Y5\nG90')" id="up">
+				  <span class="glyphicon glyphicon-arrow-up"></span>
+				</button>
+				<button type="button" class="btn btn-default btn-lg" onclick="sendG('G91\nG0X0Y-5\nG90')" id="down">
+				  <span class="glyphicon glyphicon-arrow-down"></span>
+				</button>
+					<button type="button" class="btn btn-default btn-lg" onclick="sendG('G91\nG0X-5Y0\nG90')" id="left">
+				  <span class="glyphicon glyphicon-arrow-left"></span>
+				</button>
+					<button type="button" class="btn btn-default btn-lg"  onclick="sendG('G91\nG0X5Y0\nG90')" id="right">
+				  <span class="glyphicon glyphicon-arrow-right"></span>
+				</button>
+				</div>
+				<div class="btn-group" id="bPad">
+				<button type="button" class="btn btn-success btn-lg" onclick="sendG('M3')" id="on">
+				  <span class="glyphicon glyphicon-flash"></span>
+				</button>
+				<button type="button" class="btn btn-danger btn-lg" onclick="sendG('M5')" id="off">
+				  <span class="glyphicon glyphicon-remove"></span>
+				</button>
+				</div>
+			</div>
+			<div class="panel-body" id="convertPane" >
+				<form name="convert" enctype=multipart/form-data>
+					<h4>Convert File</h4>
+					<p>
 		
-		Convert a DXF file to Gcode.  Many programs can output DXF files.<br>
-		Try going to <b> File >> Save as... >> File Type: DXF </b> in AutoCAD <br>
-		or go to the <b> File >> Export </b> menu in Adobe Illustrator <br><br>
-		The software does not support splines, so make sure to convert all of those to 'arcs'
+					Convert a DXF file to Gcode.<br>
+					In AutoCAD:<br>
+					Try going to <b> File >> Save as... >> File Type: DXF </b><br>
+					In Adobe Illustrator:<br>
+					Go to the <b> File >> Export </b> menu<br><br>
+					The software does not support splines, so make sure to convert all of those to 'arcs'
 		
-		</p>
-		<input type=file></input>
-		<input type=submit value="Convert File"></input>
-	</form>
+					</p>
+					<input type=file name="fileConvert"></input>
+					<button type="button" id="convertButton" >Convert</button>
+				</form>
+			</div>
+			<div class="panel-body" id="sendPane">
+				<form id="send" action="/g" method="POST">
+					<h4>G-Code</h4>
+					<div id="response"></div>
+					<textarea class="form-control" name='gcode' placeholder="Enter G-Code Here"></textarea><br>
+					<div class="row">
+						<div class="col-md-4">
+							<div class="input-group input-group-md">
+							  <span class="input-group-addon"><span class="glyphicon glyphicon-repeat"></span></span>
+							  <input class="form-control" type=number name="repeat" style="width: 4em" min="0" max="99" step="1" value="1">
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="btn-group" data-toggle="buttons">	
+								<label class="btn btn-default active">
+									<input type="radio" name="unit" value="mm" checked> mm
+								</label>
+								<label class="btn btn-default">
+									<input type="radio" name="unit" value="in"> in
+								</label>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<button type="button" 
+									class="btn btn-primary" 
+									onclick="sendG(	$('textarea[name=gcode]').val() ,
+													$('input[name=unit]:radio:checked').val() ,
+													$('input[name=repeat]').val())">
+									Send Job</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>
 <script src="js/logs.js"></script>
 
